@@ -4,7 +4,7 @@ It first appears in [Sequence Generation using Deep Recurrent Networks and Embed
 
 It is based in the [mono-MusicXML-dataset](https://github.com/EelcovdW/mono-MusicXML-dataset) after scraping musescore to get the midi files, cleaning the data to get rid off useless pieces and make 2 transformations to the files having 3 variations at the end.
 - Control Dataset:This is the base case, on which X is the concatenated array of the original songs and Y is X shifted by one position.
-- DB12 Dataset: To construct this dataset, each song is transposed 12 times (on each degree of the chromatic scale.
+- DB12 Dataset: To construct this dataset, each song is transposed 12 times (on each degree of the chromatic scale).
 - Intervals Dataset: In this case, we do not have a sequence of notes, but a sequence of relative changes. 
 
 The process consists of next steps: 
