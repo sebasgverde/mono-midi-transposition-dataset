@@ -17,7 +17,7 @@ The process consists of next steps:
 
 ## Cite this dataset as
 ```buildoutcfg
-@misc{garciavalencia2020sequence,
+@article{garciavalencia2020sequence,
       title={Sequence Generation using Deep Recurrent Networks and Embeddings: A study case in music}, 
       author={Sebastian Garcia-Valencia and Alejandro Betancourt and Juan G. Lalinde-Pulido},
       year={2020},
