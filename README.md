@@ -92,3 +92,64 @@ python mono-midi-transposition-dataset/data_creation.py --data_dir pickles/ --ba
 python mono-midi-transposition-dataset/data_creation.py --data_dir pickles/ --base_name "validation"
 
 ```
+
+## Data Transformation Algorithms
+Next pseudocode summarises the procedure to create the DB12 dataset, defining a song as an ordered set of midi 
+ notes of the form {X0, X1, ..., Xsong}, where Xi is the note in the position i, with X_i in [0,127] 
+ (since these transformations are based only in pitch, time is copied at the end to each correspondent transformed element 
+ from the original tuple).
+ 
+```buildoutcfg
+def songToDB12(self, note_sequence_vector):
+    centralC = 60
+
+    min_note = min(note_sequence_vector)
+    max_note = max(note_sequence_vector)
+
+    middle_song_point = int(math.floor((max_note - min_note)/2))
+                         + min_note
+
+    general_middle_gap = centralC - middle_song_point
+
+    remaining_transp = 11 - abs(general_middle_gap)
+
+    if remaining_transp >= 0:
+        up_transp = int(math.ceil(remaining_transp/2))
+        down_transp = remaining_transp - up_transp
+
+        if general_middle_gap < 0:
+            down_transp += abs(general_middle_gap)
+        else:
+            up_transp += abs(general_middle_gap)
+    else:
+        if general_middle_gap <= 0:
+            down_transp = 11
+        else:
+            up_transp = 11
+
+
+    tensors = [note_sequence_vector]
+
+    for i in range(down_transp):
+        new_note_vector = [x-(i+1) for x in note_sequence_vector]
+        tensors.append(new_note_vector)
+    for i in range(up_transp):
+        new_note_vector = [x+(i+1) for x in note_sequence_vector]
+        tensors.append(new_note_vector)
+        
+    return tensors
+```
+
+Next pseudocode shows the strategy to convert each melody in an interval representation.
+```buildoutcfg
+
+def songToInterval(self, note_sequence_vector):
+    tensor = []
+
+    for i in range(len(note_sequence_vector)-1):
+        interval = note_sequence_vector[i+1] - 
+                    note_sequence_vector[i]
+        tensor.append(interval)
+
+    return tensor
+```
