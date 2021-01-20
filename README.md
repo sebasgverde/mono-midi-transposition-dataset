@@ -1,6 +1,6 @@
 # mono-midi-transposition-dataset
 The mono-midi-transposition-dataset is a dataset for monophonic music with two variations to achieve free transposition representation of music.
-It first appears in [Sequence Generation using Deep Recurrent Networks and Embeddings: A study case in music](https://arxiv.org/abs/2012.01231) and then an updated version in [In working progress]()
+It first appears in [Sequence Generation using Deep Recurrent Networks and Embeddings: A study case in music](https://arxiv.org/abs/2012.01231) and then an updated version in [A framework to compare music generative models using automatic evaluation metrics extended to rhythm](https://arxiv.org/abs/2101.07669)
 
 It is based in the [mono-MusicXML-dataset](https://github.com/EelcovdW/mono-MusicXML-dataset) after scraping musescore to get the midi files, cleaning the data to get rid off useless pieces and make 2 transformations to the files having 3 variations at the end.
 - Control Dataset:This is the base case, on which X is the concatenated array of the original songs and Y is X shifted by one position.
